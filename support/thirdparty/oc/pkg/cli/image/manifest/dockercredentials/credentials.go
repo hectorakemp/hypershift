@@ -38,6 +38,13 @@ func NewFromBytes(b []byte) (auth.CredentialStore, error) {
 	}, nil
 }
 
+func NewFromImageMetadataService() (auth.CredentialStore, error) {
+	return &keyringCredentialStore{
+		DockerKeyring:     &credentialprovider.BasicDockerKeyring{},
+		RefreshTokenStore: registryclient.NewRefreshTokenStore(),
+	}, nil
+}
+
 type keyringCredentialStore struct {
 	credentialprovider.DockerKeyring
 	registryclient.RefreshTokenStore

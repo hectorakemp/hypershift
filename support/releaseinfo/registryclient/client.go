@@ -258,6 +258,8 @@ func GetRepoSetup(ctx context.Context, imageRef string, pullSecret []byte) (dist
 		return nil, nil, fmt.Errorf("failed to create secure transport: %w", err)
 	}
 	insecureRT, err := rest.TransportFor(&rest.Config{TLSClientConfig: rest.TLSClientConfig{Insecure: true}})
+
+	// TODO as
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to create insecure transport: %w", err)
 	}
